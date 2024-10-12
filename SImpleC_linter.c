@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #define N 255
-typedef struct{
+typedef struct righe_cod{
 int num_riga;
 int commented;
-righe_cod* succ;
+struct righe_cod* succ;
 }righe_cod;
 righe_cod*nodo_nuovo(int num_riga, int commented){
     righe_cod* nodo=(righe_cod*)malloc(sizeof(righe_cod));
@@ -29,8 +30,8 @@ int check_Slash_Ast(char* line)
     k=getc(line);
 
 while(k!=NULL){
-    if(c=='\ ' &&k =='\ ') return 1;
-    if(c=='\ ' &&k =='* ') return 2;
+    if(c=='/ ' &&k =='/') return 1;
+    if(c=='/' &&k =='*') return 2;
 
 }
 }
@@ -53,6 +54,7 @@ int main(){
      while ((read = getline(&line, &len, stdin)) != -1) {
     num_riga++;
     tot_righe++;
+    
     
 
 }
