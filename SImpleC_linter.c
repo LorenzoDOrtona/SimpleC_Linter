@@ -32,7 +32,7 @@ int check_Slash_Ast(char* line)
 while(k!=NULL){
     if(c=='/ ' &&k =='/') return 1;
     if(c=='/' &&k =='*') return 2;
-
+    if(c=='*' &&k =='/') return 3;
 }
 }
 int check_commento(char* line,int num_riga,int slash_ast){
@@ -54,7 +54,7 @@ int main(){
      while ((read = getline(&line, &len, stdin)) != -1) {
     num_riga++;
     tot_righe++;
-    
+
     
 
 }
