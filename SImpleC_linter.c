@@ -22,6 +22,7 @@ righe_cod* Insert_in_testa(righe_cod * head,righe_cod* nuovo){
         nuovo->succ=head;
         return nuovo;
     }
+    return head;
 }
 int check_Slash_Ast(char* line,int len) //nella linea cerco simboli
 {
@@ -52,7 +53,7 @@ int main(){
     size_t len = 0;
     ssize_t read;
 
-     while ((read = getline(&line, &len, stdin)) != -1) {
+     while ((read = getline(&line, &len, stdin))!=-1 ) {
     num_riga++;
     tot_righe++;
     //if si credo nodo e aggiungo
@@ -62,5 +63,7 @@ int main(){
         num_righe_commentate++;
     }
 }
-printf("\nHai commenti in %d righe\n", num_righe_commentate);
+printf("\nHai commenti in %d righe su %d righe totali\n", num_righe_commentate, tot_righe);
+double percent=num_righe_commentate/tot_righe;
+(percent<(1/4))? printf("\nHai pochi commenti!Dovresti aggiungerne!"):printf("\nBravo, hai tanti commenti!!");
 }
