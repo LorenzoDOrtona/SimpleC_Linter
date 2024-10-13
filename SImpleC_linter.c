@@ -23,21 +23,21 @@ righe_cod* Insert_in_testa(righe_cod * head,righe_cod* nuovo){
         return nuovo;
     }
 }
-int check_Slash_Ast(char* line)
+int check_Slash_Ast(char* line) //nella linea cerco simboli
 {
     int c,k;
     c=getc(line);
     k=getc(line);
 
-while(k!=NULL){
+while(k!='\n'&&k!='\0'){
     if(c=='/ ' &&k =='/') return 1;
     if(c=='/' &&k =='*') return 2;
     if(c=='*' &&k =='/') return 3;
 }
 }
-int check_commento(char* line,int num_riga,int slash_ast){
-    if(slash_ast==1){
-        
+int check_commento(char* line,int slash_ast){//ti dice se non c'è, c'è comm o c'è commento lungo
+    if(slash_ast==0){// se non sono dentro un commento lungo
+        return check_Slash_Ast(line);
     }
 
 }
@@ -46,7 +46,8 @@ int main(){
     int num_riga=0;
     int tot_righe=0;
     int num_righe_commentate=0;
-
+    int slash_ast=0;//verifica se siamo dentro un lungo commento
+    righe_cod*lista_r_comm=NULL;    
     char *line = NULL;
     size_t len = 0;
     ssize_t read;
@@ -54,8 +55,11 @@ int main(){
      while ((read = getline(&line, &len, stdin)) != -1) {
     num_riga++;
     tot_righe++;
-
-    
-
+    //if si credo nodo e aggiungo
+    if(check_commento(line,slash_ast)!=0){//ho un commento nornale
+        Insert_in_testa( lista_r_comm,nodo_nuovo(num_riga,check_commento(line,slash_ast)));
+        num_righe_commentate++;
+    }
 }
+printf("\nHai comm in %d righe\n", num_righe_commentate);
 }
